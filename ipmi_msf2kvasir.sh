@@ -18,7 +18,7 @@ do
 		a[4]='rakp_hmac_sha1_hash'	#hash type for ipmi
 
 		echo "${a[0]},${a[1]},"'"'${a[2]}'"','"'${a[3]},'"'${a[4]}'"'
-		
+
 	else
 		a[0]=`echo $line | grep -v private_type | cut -d , -f 1`	#IP
 		a[1]=`echo $line | grep -v private_type | cut -d , -f 3`	#port
@@ -26,7 +26,7 @@ do
 		a[3]=`echo $line | grep -v private_type | cut -d '"' -f 10`	#password
 		a[4]='rakp_hmac_sha1_hash'	#hash type for ipmi
 
-		echo "${a[0]},${a[1]},${a[2]},"'"'${a[3]}'"','"'${a[4]}'"'
+		echo "${a[0]},${a[1]},${a[2]},"'"'${a[3]}'"','"''"','"'${a[4]}'"'
 	fi
 
 done < $file

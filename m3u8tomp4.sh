@@ -10,4 +10,5 @@ for i in `cat /tmp/2`;
 do 
         ffmpeg -i $i -c copy -bsf:a aac_adtstoasc file-$count.mp4; 
         ((count++)); 
+        sleep $[ ( $RANDOM % 10 )  + 1 ]s #add a random delay
 done;
